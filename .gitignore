@@ -25,5 +25,9 @@ kubeconfig*
 # OS/editor noise
 .DS_Store
 Thumbs.db
-.vscode/
 .idea/
+.vscode/
+
+# Generated reports
+*report*.txt
+*audit*.txt
