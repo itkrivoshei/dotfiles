@@ -21,6 +21,11 @@ id_rsa*
 id_ed25519*
 *.kubeconfig
 kubeconfig*
+.docker/config.json
+.aws/
+.azure/
+.config/gh/hosts.yml
+.config/gcloud/
 
 # OS/editor noise
 .DS_Store
@@ -28,6 +33,9 @@ Thumbs.db
 .idea/
 .vscode/
 
-# Generated reports
+# Generated reports and local snapshots
 *report*.txt
 *audit*.txt
+inventory/
+snapshots/
+*.tar.gz
