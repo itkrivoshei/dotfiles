@@ -14,7 +14,13 @@ jobs:
       - name: Install tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y shellcheck shfmt jq
+          sudo apt-get install -y shellcheck shfmt jq python3
+
+      - name: Check Bash syntax
+        run: |
+          for file in scripts/*.sh; do
+            bash -n "$file"
+          done
 
       - name: ShellCheck scripts
         run: shellcheck scripts/*.sh
@@ -26,3 +32,19 @@ jobs:
         run: |
           jq . config/Code/User/settings.json >/dev/null
           jq . config/nvim/lazyvim.json >/dev/null
+
+      - name: Validate TOML
+        run: |
+          python3 - <<'PY'
+          import tomllib
+          from pathlib import Path
+
+          for path in [Path('config/starship.toml'), Path('config/nvim/stylua.toml')]:
+              with path.open('rb') as file:
+                  tomllib.load(file)
+          PY
+
+      - name: Validate package manifest
+        run: |
+          test -s packages/ubuntu-apt.txt
+          grep -nE '^\s*$' packages/ubuntu-apt.txt && exit 1 || true
