@@ -1,3 +1,7 @@
+# Ubuntu repository packages used by the baseline setup.
+# External/vendor packages such as code, docker-ce, fnm, uv, atuin, lazygit, and gh
+# need their own official repositories or installers and are intentionally not listed here.
+
 zsh
 git
 curl
@@ -10,6 +14,7 @@ software-properties-common
 build-essential
 tree
 jq
+yq
 fzf
 tmux
 openssh-client
@@ -19,7 +24,6 @@ fastfetch
 ripgrep
 fd-find
 bat
-eza
 direnv
 zoxide
 wl-clipboard
@@ -28,15 +32,14 @@ python3-venv
 python3-pynvim
 shellcheck
 shfmt
+stylua
 duf
 ncdu
 bind9-dnsutils
 netcat-openbsd
 traceroute
 lsof
-code
-docker-ce
-docker-ce-cli
-containerd.io
-docker-buildx-plugin
-docker-compose-plugin
+kitty
+neovim
+nodejs
+npm
