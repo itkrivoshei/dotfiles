@@ -102,7 +102,7 @@ install_item() {
   fi
 
   if [[ -e "$dst" || -L "$dst" ]]; then
-    local backup="$BACKUP_DIR/${dst#$HOME/}"
+    local backup="$BACKUP_DIR/${dst#"$HOME"/}"
     run mkdir -p "$(dirname "$backup")"
     run mv "$dst" "$backup"
     log "backup: $dst -> $backup"
