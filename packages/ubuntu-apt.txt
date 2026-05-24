@@ -1,7 +1,6 @@
 # Ubuntu repository packages used by the baseline setup.
 # External/vendor packages such as code, docker-ce, fnm, uv, atuin, lazygit, and gh
 # need their own official repositories or installers and are intentionally not listed here.
-
 zsh
 git
 curl
