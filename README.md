@@ -1,97 +1,126 @@
 # dotfiles
 
-Personal Linux development environment for Ubuntu / GNOME / Kitty / zsh / Oh My Zsh / Starship / LazyVim / VS Code.
+[![check](https://img.shields.io/github/actions/workflow/status/itkrivoshei/dotfiles/check.yml?branch=main&style=flat-square&label=check)](https://github.com/itkrivoshei/dotfiles/actions/workflows/check.yml)
+[![license](https://img.shields.io/github/license/itkrivoshei/dotfiles?style=flat-square)](LICENSE)
 
-This repository is intended to be small, readable, and practical. It stores only portable configuration files and install helpers. It does not store secrets, tokens, SSH keys, `.env` files, caches, or machine-specific runtime state.
+Linux dotfiles and setup scripts for an Ubuntu-based development environment.
 
 ## Stack
 
-| Area | Tooling |
+| Area | Tools |
 |---|---|
 | Shell | zsh, Oh My Zsh, Starship |
 | Terminal | Kitty |
-| Navigation/search | fzf, fzf-tab, zoxide, fd, ripgrep |
-| Files | eza, bat |
-| Git | git, gh, lazygit |
-| Editors | Neovim/LazyVim, VS Code |
-| Runtime | fnm, Node.js, npm, Python, uv, pipx |
-| Containers | Docker, Docker Compose, Buildx |
-| System debug | btop, duf, ncdu, lsof, dig, nc, traceroute |
+| Editor | Neovim/LazyVim, VS Code |
+| Search/navigation | fzf, zoxide, ripgrep, fd |
+| CLI utilities | git, tmux, jq, yq, bat, btop, duf, ncdu |
+| Runtime basics | Node.js, npm, Python |
 
-## Layout
+## Scope
 
-```text
-.
-├── home/                         # files linked into $HOME
-│   ├── .zshrc
-│   └── .oh-my-zsh/custom/
-│       ├── dev-workflow.zsh
-│       └── fzf-tab.zsh
-├── config/                       # files linked into ~/.config
-│   ├── kitty/kitty.conf
-│   ├── starship.toml
-│   ├── Code/User/settings.json
-│   └── nvim/
-├── scripts/
-│   ├── install.sh                # symlink/copy dotfiles into place
-│   ├── install-vscode-extensions.sh
-│   └── doctor.sh                 # quick health check
-├── packages/ubuntu-apt.txt
-├── vscode/extensions.txt
-├── .editorconfig
-└── .gitignore
-```
+This repository stores portable configuration and setup helpers for a Linux workstation. It does not store secrets, SSH keys, browser profiles, caches, `.env` files, cloud credentials, or machine-specific runtime state.
 
 ## Install
 
-Clone:
+Clone the repository:
 
 ```bash
 git clone https://github.com/itkrivoshei/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ```
 
-Dry run first:
+Preview changes without modifying files:
 
 ```bash
 ./scripts/install.sh --dry-run
 ```
 
-Install using symlinks:
+Install dotfiles using symlinks:
 
 ```bash
 ./scripts/install.sh
 ```
 
-Install VS Code extensions:
+Install Ubuntu packages from `packages/ubuntu-apt.txt`:
 
 ```bash
-./scripts/install-vscode-extensions.sh
+./scripts/install.sh --packages
 ```
 
-Run a health check:
+Install packages, dotfiles, VS Code extensions, and then run verification:
 
 ```bash
-./scripts/doctor.sh
+./scripts/install.sh --packages --vscode --doctor
 ```
 
-## Install behavior
-
-`install.sh` creates symlinks from this repo into your real config locations. If a target already exists and is not already the correct symlink, it is backed up into:
-
-```text
-~/.dotfiles-backup/YYYYmmdd-HHMMSS/
-```
-
-Use copy mode instead of symlink mode:
+Use copy mode instead of symlinks:
 
 ```bash
 ./scripts/install.sh --copy
 ```
 
+Existing target files are backed up to:
+
+```text
+~/.dotfiles-backup/YYYYmmdd-HHMMSS/
+```
+
+## Verify
+
+Run the local health check:
+
+```bash
+./scripts/doctor.sh
+```
+
+Run the same style of checks used by CI:
+
+```bash
+bash -n scripts/*.sh
+shellcheck scripts/*.sh
+shfmt -d scripts/*.sh home/.oh-my-zsh/custom/*.zsh
+jq . config/Code/User/settings.json >/dev/null
+jq . config/nvim/lazyvim.json >/dev/null
+python3 - <<'PY'
+import tomllib
+from pathlib import Path
+
+for path in [Path('config/starship.toml'), Path('config/nvim/stylua.toml')]:
+    with path.open('rb') as file:
+        tomllib.load(file)
+PY
+```
+
+There is no build step for this repository.
+
+## Project structure
+
+```text
+.
+├── config/                     # files linked into ~/.config
+│   ├── Code/User/settings.json
+│   ├── kitty/kitty.conf
+│   ├── nvim/
+│   └── starship.toml
+├── home/                       # files linked into $HOME
+│   ├── .zshrc
+│   └── .oh-my-zsh/custom/
+├── packages/ubuntu-apt.txt     # Ubuntu package manifest
+├── scripts/
+│   ├── doctor.sh
+│   ├── install.sh
+│   └── install-vscode-extensions.sh
+├── vscode/extensions.txt
+├── LICENSE
+└── README.md
+```
+
 ## Notes
 
-- Docker is configured as installed but normally disabled from background startup on this laptop.
-- VS Code is configured as the low-friction daily editor.
-- LazyVim remains the terminal editor.
-- Starship owns the prompt; therefore `ZSH_THEME=""` is intentional.
+- `scripts/install.sh` defaults to symlink mode.
+- `scripts/doctor.sh` reports required and optional tools separately.
+- Vendor tools such as Docker, GitHub CLI, VS Code, fnm, uv, atuin, and lazygit may require their own official repositories or installers and are not assumed to be installed by the base package manifest.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
