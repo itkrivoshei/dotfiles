@@ -13,4 +13,4 @@ while IFS= read -r extension || [[ -n "$extension" ]]; do
   [[ -z "$extension" || "$extension" =~ ^# ]] && continue
   echo "Installing: $extension"
   code --install-extension "$extension"
-done < "$EXTENSIONS_FILE"
+done <"$EXTENSIONS_FILE"
