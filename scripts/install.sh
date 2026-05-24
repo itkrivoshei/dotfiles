@@ -34,16 +34,23 @@ EOF
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --packages) INSTALL_PACKAGES="true" ;;
-    --dotfiles) INSTALL_DOTFILES="true" ;;
-    --no-dotfiles) INSTALL_DOTFILES="false" ;;
-    --vscode) INSTALL_VSCODE="true" ;;
-    --doctor) RUN_DOCTOR="true" ;;
-    --symlink) MODE="symlink" ;;
-    --copy) MODE="copy" ;;
-    --dry-run) DRY_RUN="true" ;;
-    -h|--help) usage; exit 0 ;;
-    *) echo "Unknown argument: $1" >&2; usage; exit 1 ;;
+  --packages) INSTALL_PACKAGES="true" ;;
+  --dotfiles) INSTALL_DOTFILES="true" ;;
+  --no-dotfiles) INSTALL_DOTFILES="false" ;;
+  --vscode) INSTALL_VSCODE="true" ;;
+  --doctor) RUN_DOCTOR="true" ;;
+  --symlink) MODE="symlink" ;;
+  --copy) MODE="copy" ;;
+  --dry-run) DRY_RUN="true" ;;
+  -h | --help)
+    usage
+    exit 0
+    ;;
+  *)
+    echo "Unknown argument: $1" >&2
+    usage
+    exit 1
+    ;;
   esac
   shift
 done
