@@ -1,0 +1,18 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# local env/secrets
+.env
+.env.*
+*.pem
+*.key
+
+# local tooling
+.cache/
+.tmp/
+.vscode/
+.idea/

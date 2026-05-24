@@ -1,0 +1,45 @@
+[user]
+  name = Nikita Krivoshei
+  email = nikitakrivoshei@gmail.com
+
+[init]
+  defaultBranch = main
+
+[core]
+  editor = nvim
+  excludesfile = ~/.config/git/ignore
+  autocrlf = input
+
+[pull]
+  ff = only
+
+[fetch]
+  prune = true
+  pruneTags = true
+
+[rerere]
+  enabled = true
+
+[push]
+  default = simple
+  autoSetupRemote = true
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname
+
+[color]
+  ui = auto
+
+[alias]
+  s = status --short --branch
+  co = checkout
+  cb = checkout -b
+  cm = commit -m
+  amend = commit --amend --no-edit
+  last = log -1 --stat
+  lg = log --oneline --graph --decorate --all
+  unstage = restore --staged
+  discard = restore

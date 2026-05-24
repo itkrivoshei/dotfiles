@@ -1,0 +1,48 @@
+add_newline = false
+command_timeout = 1000
+
+format = "$directory$git_branch$git_status$docker_context$kubernetes$nodejs$python$cmd_duration$line_break$character"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold blue)"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold blue"
+
+[git_branch]
+symbol = "git:"
+style = "bold purple"
+
+[git_status]
+format = "([$all_status$ahead_behind]($style) )"
+style = "bold yellow"
+
+[cmd_duration]
+min_time = 1000
+format = "took [$duration]($style) "
+style = "dimmed white"
+
+[docker_context]
+symbol = "docker:"
+format = "[$symbol$context]($style) "
+style = "blue bold"
+
+[kubernetes]
+disabled = false
+symbol = "k8s:"
+format = "[$symbol$context(::$namespace)]($style) "
+style = "cyan bold"
+
+[nodejs]
+symbol = "node:"
+format = "[$symbol$version]($style) "
+style = "green bold"
+
+[python]
+symbol = "py:"
+format = "[$symbol$version( $virtualenv)]($style) "
+style = "yellow bold"
