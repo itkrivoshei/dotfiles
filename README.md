@@ -1,126 +1,71 @@
 # dotfiles
 
-[![check](https://img.shields.io/github/actions/workflow/status/itkrivoshei/dotfiles/check.yml?branch=main&style=flat-square&label=check)](https://github.com/itkrivoshei/dotfiles/actions/workflows/check.yml)
-[![license](https://img.shields.io/github/license/itkrivoshei/dotfiles?style=flat-square)](LICENSE)
+[![Check](https://img.shields.io/github/actions/workflow/status/itkrivoshei/dotfiles/check.yml?branch=main&style=flat-square&label=check&logo=githubactions&logoColor=white)](https://github.com/itkrivoshei/dotfiles/actions/workflows/check.yml)
+[![Shell](https://img.shields.io/badge/Shell-Bash%20%2B%20zsh-4eaa25?style=flat-square&logo=gnubash&logoColor=white)](scripts/install.sh)
+[![Neovim](https://img.shields.io/badge/Neovim-LazyVim-57a143?style=flat-square&logo=neovim&logoColor=white)](config/nvim)
+[![License](https://img.shields.io/github/license/itkrivoshei/dotfiles?style=flat-square)](LICENSE)
 
-Linux dotfiles and setup scripts for an Ubuntu-based development environment.
+Linux workstation configuration for an Ubuntu-based development environment: shell, terminal, editor, package manifest, VS Code extensions, and health checks.
 
-## Stack
+## Install Modes
 
-| Area | Tools |
-|---|---|
-| Shell | zsh, Oh My Zsh, Starship |
-| Terminal | Kitty |
-| Editor | Neovim/LazyVim, VS Code |
-| Search/navigation | fzf, zoxide, ripgrep, fd |
-| CLI utilities | git, tmux, jq, yq, bat, btop, duf, ncdu |
-| Runtime basics | Node.js, npm, Python |
+| Mode | Command |
+| --- | --- |
+| Preview only | `./scripts/install.sh --dry-run` |
+| Link dotfiles | `./scripts/install.sh` |
+| Copy instead of symlink | `./scripts/install.sh --copy` |
+| Install apt packages | `./scripts/install.sh --packages` |
+| Add VS Code extensions | `./scripts/install.sh --vscode` |
+| Finish with health check | `./scripts/install.sh --doctor` |
 
-## Scope
+Existing target files are moved into `~/.dotfiles-backup/YYYYmmdd-HHMMSS/` before new links or copies are created.
 
-This repository stores portable configuration and setup helpers for a Linux workstation. It does not store secrets, SSH keys, browser profiles, caches, `.env` files, cloud credentials, or machine-specific runtime state.
-
-## Install
-
-Clone the repository:
-
-```bash
-git clone https://github.com/itkrivoshei/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-```
-
-Preview changes without modifying files:
-
-```bash
-./scripts/install.sh --dry-run
-```
-
-Install dotfiles using symlinks:
-
-```bash
-./scripts/install.sh
-```
-
-Install Ubuntu packages from `packages/ubuntu-apt.txt`:
-
-```bash
-./scripts/install.sh --packages
-```
-
-Install packages, dotfiles, VS Code extensions, and then run verification:
-
-```bash
-./scripts/install.sh --packages --vscode --doctor
-```
-
-Use copy mode instead of symlinks:
-
-```bash
-./scripts/install.sh --copy
-```
-
-Existing target files are backed up to:
+## What Gets Managed
 
 ```text
-~/.dotfiles-backup/YYYYmmdd-HHMMSS/
+home/.zshrc                         -> ~/.zshrc
+home/.oh-my-zsh/custom/*.zsh        -> ~/.oh-my-zsh/custom/
+config/kitty/kitty.conf             -> ~/.config/kitty/kitty.conf
+config/starship.toml                -> ~/.config/starship.toml
+config/Code/User/settings.json      -> ~/.config/Code/User/settings.json
+config/nvim/                        -> ~/.config/nvim/
 ```
 
-## Verify
+## Tooling Profile
 
-Run the local health check:
+| Area | Tools |
+| --- | --- |
+| Shell | zsh, Oh My Zsh, Starship |
+| Terminal | Kitty, tmux |
+| Editor | Neovim/LazyVim, VS Code |
+| Search/navigation | ripgrep, fd, fzf, zoxide |
+| CLI utilities | jq, yq, bat, btop, duf, ncdu |
+| Runtime base | Node.js, npm, Python |
+
+External/vendor tools such as Docker, GitHub CLI, VS Code, fnm, uv, atuin, and lazygit may need their own installers or package repositories.
+
+## Health Check
 
 ```bash
 ./scripts/doctor.sh
 ```
 
-Run the same style of checks used by CI:
+CI validates shell syntax, ShellCheck, shfmt, JSON, TOML, and the Ubuntu package manifest.
 
-```bash
-bash -n scripts/*.sh
-shellcheck scripts/*.sh
-shfmt -d scripts/*.sh home/.oh-my-zsh/custom/*.zsh
-jq . config/Code/User/settings.json >/dev/null
-jq . config/nvim/lazyvim.json >/dev/null
-python3 - <<'PY'
-import tomllib
-from pathlib import Path
-
-for path in [Path('config/starship.toml'), Path('config/nvim/stylua.toml')]:
-    with path.open('rb') as file:
-        tomllib.load(file)
-PY
-```
-
-There is no build step for this repository.
-
-## Project structure
+## Repository Layout
 
 ```text
-.
-├── config/                     # files linked into ~/.config
-│   ├── Code/User/settings.json
-│   ├── kitty/kitty.conf
-│   ├── nvim/
-│   └── starship.toml
-├── home/                       # files linked into $HOME
-│   ├── .zshrc
-│   └── .oh-my-zsh/custom/
-├── packages/ubuntu-apt.txt     # Ubuntu package manifest
-├── scripts/
-│   ├── doctor.sh
-│   ├── install.sh
-│   └── install-vscode-extensions.sh
-├── vscode/extensions.txt
-├── LICENSE
-└── README.md
+config/                 # files linked into ~/.config
+home/                   # files linked into $HOME
+packages/ubuntu-apt.txt # apt package manifest
+scripts/                # installer and doctor scripts
+vscode/extensions.txt   # VS Code extension list
 ```
 
-## Notes
+## Boundaries
 
-- `scripts/install.sh` defaults to symlink mode.
-- `scripts/doctor.sh` reports required and optional tools separately.
-- Vendor tools such as Docker, GitHub CLI, VS Code, fnm, uv, atuin, and lazygit may require their own official repositories or installers and are not assumed to be installed by the base package manifest.
+This repo intentionally excludes secrets, SSH keys, browser profiles, caches, `.env` files, cloud credentials, and machine-specific runtime state.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+[MIT](LICENSE)
