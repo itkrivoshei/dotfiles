@@ -1,25 +1,30 @@
 {
   "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.preferredDarkColorTheme": "Catppuccin Mocha",
   "workbench.iconTheme": "catppuccin-mocha",
   "workbench.startupEditor": "none",
-  "workbench.editor.showTabs": "single",
+  "workbench.editor.showTabs": "multiple",
+  "workbench.editor.empty.hint": "hidden",
   "workbench.tree.indent": 16,
 
   "window.titleBarStyle": "native",
   "window.menuBarVisibility": "compact",
   "window.zoomLevel": 0,
+  "window.autoDetectColorScheme": true,
 
   "editor.fontFamily": "JetBrainsMono Nerd Font Mono, JetBrains Mono, monospace",
   "editor.fontSize": 14,
-  "editor.lineHeight": 1.6,
+  "editor.lineHeight": 22,
   "editor.fontLigatures": true,
   "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.smoothScrolling": true,
+  "editor.linkedEditing": true,
   "editor.minimap.enabled": false,
   "editor.wordWrap": "off",
   "editor.rulers": [100],
   "editor.renderWhitespace": "selection",
+  "editor.renderControlCharacters": false,
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
   "editor.guides.indentation": true,
@@ -30,8 +35,9 @@
     "source.organizeImports": "explicit"
   },
 
-  "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 1000,
+  "diffEditor.ignoreTrimWhitespace": false,
+
+  "files.autoSave": "onFocusChange",
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
@@ -45,9 +51,15 @@
     "**/node_modules": true,
     "**/.git": true,
     "**/.venv": true,
+    "**/.cache": true,
+    "**/.next": true,
+    "**/.turbo": true,
+    "**/.terraform": true,
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/.mypy_cache": true,
     "**/dist": true,
     "**/build": true,
-    "**/.next": true,
     "**/coverage": true
   },
 
@@ -56,9 +68,15 @@
     "**/.git/subtree-cache/**": true,
     "**/node_modules/**": true,
     "**/.venv/**": true,
+    "**/.cache/**": true,
+    "**/.next/**": true,
+    "**/.turbo/**": true,
+    "**/.terraform/**": true,
+    "**/__pycache__/**": true,
+    "**/.pytest_cache/**": true,
+    "**/.mypy_cache/**": true,
     "**/dist/**": true,
     "**/build/**": true,
-    "**/.next/**": true,
     "**/coverage/**": true
   },
 
@@ -72,10 +90,16 @@
 
   "git.confirmSync": false,
   "git.autofetch": true,
-  "git.enableSmartCommit": true,
+  "git.enableSmartCommit": false,
   "git.pruneOnFetch": true,
   "git.openRepositoryInParentFolders": "always",
+  "git.mergeEditor": true,
   "githubPullRequests.pullBranch": "never",
+
+  "gitlens.ai.model": "gitkraken",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "gitlens.ai.gitkraken.model": "openai:gpt-5-mini",
+  "gitlens.hovers.currentLine.over": "line",
 
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
@@ -84,22 +108,93 @@
   "prettier.arrowParens": "always",
 
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
 
   "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "python.terminal.activateEnvironment": true,
   "python.analysis.typeCheckingMode": "basic",
   "python.analysis.autoImportCompletions": true,
 
   "yaml.format.enable": true,
   "yaml.validate": true,
+  "yaml.hover": true,
+  "yaml.completion": true,
+  "yaml.schemaStore.enable": true,
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": [
+      ".github/workflows/*.yml",
+      ".github/workflows/*.yaml"
+    ],
+    "https://json.schemastore.org/github-action.json": [
+      ".github/actions/*/action.yml",
+      ".github/actions/*/action.yaml",
+      "action.yml",
+      "action.yaml"
+    ],
+    "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json": [
+      "docker-compose.yml",
+      "docker-compose.yaml",
+      "compose.yml",
+      "compose.yaml",
+      "**/docker-compose*.yml",
+      "**/docker-compose*.yaml"
+    ],
+    "file:///home/itkrivoshei/.vscode/extensions/continue.continue-1.2.22-linux-x64/config-yaml-schema.json": [
+      ".continue/**/*.yaml"
+    ]
+  },
 
   "docker.commands.composeUp": "docker compose up",
   "docker.commands.composeDown": "docker compose down",
+  "containers.commands.composeUp": "docker compose up",
+  "containers.commands.composeDown": "docker compose down",
 
   "errorLens.enabled": true,
   "errorLens.messageMaxChars": 120,
   "path-intellisense.extensionOnImport": true,
-  "security.workspace.trust.untrustedFiles": "open",
-  "telemetry.telemetryLevel": "off"
+
+  "security.workspace.trust.untrustedFiles": "prompt",
+  "telemetry.telemetryLevel": "off",
+  "redhat.telemetry.enabled": false,
+
+  "chat.viewSessions.orientation": "stacked",
+
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.tabSize": 2
+  },
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "files.trimTrailingWhitespace": false
+  }
 }
