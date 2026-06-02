@@ -1,11 +1,16 @@
+<div align="center">
+
 # dotfiles
 
-[![Check](https://img.shields.io/github/actions/workflow/status/itkrivoshei/dotfiles/check.yml?branch=main&style=flat-square&label=check&logo=githubactions&logoColor=white)](https://github.com/itkrivoshei/dotfiles/actions/workflows/check.yml)
-[![Shell](https://img.shields.io/badge/Shell-Bash%20%2B%20zsh-4eaa25?style=flat-square&logo=gnubash&logoColor=white)](scripts/install.sh)
-[![Neovim](https://img.shields.io/badge/Neovim-LazyVim-57a143?style=flat-square&logo=neovim&logoColor=white)](config/nvim)
-[![License](https://img.shields.io/github/license/itkrivoshei/dotfiles?style=flat-square)](LICENSE)
-
 Linux workstation configuration for an Ubuntu-based development environment: shell, terminal, editor, package manifest, VS Code extensions, and health checks.
+
+[![Check](https://img.shields.io/github/actions/workflow/status/itkrivoshei/dotfiles/check.yml?branch=main&style=for-the-badge&label=check&logo=githubactions&logoColor=white)](https://github.com/itkrivoshei/dotfiles/actions/workflows/check.yml)
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/itkrivoshei/dotfiles/codeql.yml?branch=main&style=for-the-badge&label=codeql&logo=github&logoColor=white)](https://github.com/itkrivoshei/dotfiles/actions/workflows/codeql.yml)
+[![Shell](https://img.shields.io/badge/Shell-Bash%20%2B%20zsh-4eaa25?style=for-the-badge&logo=gnubash&logoColor=white)](scripts/install.sh)
+[![Neovim](https://img.shields.io/badge/Neovim-LazyVim-57a143?style=for-the-badge&logo=neovim&logoColor=white)](config/nvim)
+[![License](https://img.shields.io/github/license/itkrivoshei/dotfiles?style=for-the-badge)](LICENSE)
+
+</div>
 
 ## Install Modes
 
