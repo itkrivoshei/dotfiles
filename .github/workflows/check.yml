@@ -34,9 +34,9 @@ jobs:
       - name: Check shell formatting
         run: shfmt -d scripts/*.sh home/.oh-my-zsh/custom/*.zsh
 
-      - name: Validate JSON
+      - name: Validate JSON and JSONC
         run: |
-          jq . config/Code/User/settings.json >/dev/null
+          npx --yes json5@2.2.3 config/Code/User/settings.json >/dev/null
           jq . config/nvim/lazyvim.json >/dev/null
 
       - name: Validate TOML
