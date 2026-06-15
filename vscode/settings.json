@@ -16,7 +16,6 @@
   "window.menuBarVisibility": "compact",
   "window.zoomLevel": -0.5,
   // Editor
-  "editor.fontFamily": "JetBrainsMono Nerd Font Mono, JetBrains Mono, monospace",
   "editor.fontSize": 14,
   "editor.lineHeight": 22,
   "editor.fontLigatures": true,
@@ -123,7 +122,6 @@
   },
   // Terminal
   "terminal.integrated.defaultProfile.linux": "zsh",
-  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
   "terminal.integrated.fontSize": 13,
   "terminal.integrated.lineHeight": 1.2,
   "terminal.integrated.cursorBlinking": true,
@@ -202,35 +200,6 @@
   "docker.commands.composeDown": "docker compose down",
   "containers.commands.composeUp": "docker compose up",
   "containers.commands.composeDown": "docker compose down",
-  // Spell checker
-  "cSpell.language": "en,en-US",
-  "cSpell.allowCompoundWords": true,
-  "cSpell.ignorePaths": [
-    "node_modules",
-    "dist",
-    "build",
-    "coverage",
-    "pnpm-lock.yaml",
-    "package-lock.json",
-    "yarn.lock"
-  ],
-  "cSpell.userWords": [
-    "DevOps",
-    "Dockerfile",
-    "Fastify",
-    "GitHub",
-    "Grafana",
-    "Krivoshei",
-    "Loki",
-    "OpenAPI",
-    "Prometheus",
-    "Promtail",
-    "Terraform",
-    "TypeScript",
-    "healthcheck",
-    "healthchecks",
-    "pnpm"
-  ],
   // Extensions
   "errorLens.enabled": true,
   "errorLens.messageMaxChars": 120,
@@ -241,7 +210,6 @@
   "redhat.telemetry.enabled": false,
   // AI / Chat
   "chat.viewSessions.orientation": "stacked",
-  "claudeCode.preferredLocation": "panel",
   // Language formatters
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
