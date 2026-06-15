@@ -9,7 +9,7 @@ Reproducible Linux workstation configuration for an Ubuntu-based development env
 [![Shell](https://img.shields.io/badge/shell-bash%20%2B%20zsh-4eaa25?style=for-the-badge&logo=gnubash&logoColor=white&labelColor=0f172a)](scripts/install.sh)
 [![ShellCheck](https://img.shields.io/badge/shellcheck-enabled-89b4fa?style=for-the-badge&logo=gnubash&logoColor=white&labelColor=0f172a)](https://www.shellcheck.net/)
 [![Neovim](https://img.shields.io/badge/neovim-LazyVim-57a143?style=for-the-badge&logo=neovim&logoColor=white&labelColor=0f172a)](config/nvim)
-[![License](https://img.shields.io/github/license/itkrivoshei/dotfiles?style=for-the-badge&labelColor=0f172a)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-89b4fa?style=for-the-badge&labelColor=0f172a)](LICENSE)
 
 </div>
 
@@ -57,7 +57,7 @@ home/.zshrc                         -> ~/.zshrc
 home/.oh-my-zsh/custom/*.zsh        -> ~/.oh-my-zsh/custom/
 config/kitty/kitty.conf             -> ~/.config/kitty/kitty.conf
 config/starship.toml                -> ~/.config/starship.toml
-vscode/settings.json               -> ~/.config/Code/User/settings.json
+vscode/settings.json                -> ~/.config/Code/User/settings.json
 config/nvim/                        -> ~/.config/nvim/
 ```
 
@@ -88,7 +88,7 @@ Health checks are defined in [`scripts/doctor.sh`](scripts/doctor.sh):
 ./scripts/doctor.sh
 ```
 
-CI validates shell syntax, ShellCheck, shfmt, JSON, TOML, and the Ubuntu package manifest.
+CI validates shell syntax, ShellCheck, shfmt, JSON/JSONC, VS Code portability, TOML, and the Ubuntu package manifest.
 
 ## Repository Layout
 
@@ -121,4 +121,4 @@ This repository intentionally excludes secrets, SSH keys, browser profiles, cach
 
 ## License
 
-[MIT](LICENSE)
+Licensed under the [MIT License](LICENSE).
