@@ -15,7 +15,7 @@ Reproducible Linux workstation configuration for an Ubuntu-based development env
 
 ## Overview
 
-This repository manages a personal Linux workstation setup with repeatable shell configuration, terminal tooling, editor settings, package manifests, VS Code extensions, and validation scripts.
+This repository provides a reusable Linux workstation setup with repeatable shell configuration, terminal tooling, editor settings, package manifests, VS Code extensions, and validation scripts.
 
 It is designed for safe local setup: existing target files are moved into `~/.dotfiles-backup/YYYYmmdd-HHMMSS/` before new links or copies are created.
 
@@ -57,7 +57,7 @@ home/.zshrc                         -> ~/.zshrc
 home/.oh-my-zsh/custom/*.zsh        -> ~/.oh-my-zsh/custom/
 config/kitty/kitty.conf             -> ~/.config/kitty/kitty.conf
 config/starship.toml                -> ~/.config/starship.toml
-config/Code/User/settings.json      -> ~/.config/Code/User/settings.json
+vscode/settings.json               -> ~/.config/Code/User/settings.json
 config/nvim/                        -> ~/.config/nvim/
 ```
 
@@ -73,6 +73,12 @@ config/nvim/                        -> ~/.config/nvim/
 | Runtime base      | [Node.js](https://nodejs.org/), [npm](https://www.npmjs.com/), [Python](https://www.python.org/)                                                                                                                                         |
 
 External/vendor tools such as Docker, GitHub CLI, VS Code, fnm, uv, atuin, and lazygit may need their own installers or package repositories.
+
+## VS Code
+
+[`vscode/settings.json`](vscode/settings.json) contains portable user settings, while [`vscode/extensions.txt`](vscode/extensions.txt) defines a small general-purpose extension baseline.
+
+The shared settings avoid user identities, absolute home paths, personal dictionaries, and settings that depend on unmanaged extensions. Framework-specific extensions are intentionally left to each project's recommendations.
 
 ## Health Check
 
@@ -91,7 +97,7 @@ config/                 # files linked into ~/.config
 home/                   # files linked into $HOME
 packages/ubuntu-apt.txt # apt package manifest
 scripts/                # installer and doctor scripts
-vscode/extensions.txt   # VS Code extension list
+vscode/                  # portable VS Code settings and extensions
 ```
 
 Key paths:
@@ -101,7 +107,7 @@ Key paths:
 - [`packages/ubuntu-apt.txt`](packages/ubuntu-apt.txt) contains the Ubuntu apt package manifest.
 - [`scripts/install.sh`](scripts/install.sh) applies the dotfiles.
 - [`scripts/doctor.sh`](scripts/doctor.sh) validates the local environment.
-- [`vscode/extensions.txt`](vscode/extensions.txt) lists VS Code extensions.
+- [`vscode/`](vscode/) contains portable VS Code settings and the extension manifest.
 
 ## Automation
 

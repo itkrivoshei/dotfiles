@@ -36,8 +36,15 @@ jobs:
 
       - name: Validate JSON and JSONC
         run: |
-          npx --yes json5@2.2.3 config/Code/User/settings.json >/dev/null
+          npx --yes json5@2.2.3 vscode/settings.json >/dev/null
           jq . config/nvim/lazyvim.json >/dev/null
+
+      - name: Validate VS Code portability
+        run: |
+          test -s vscode/extensions.txt
+          sort -f -c vscode/extensions.txt
+          grep -nEv '^[A-Za-z0-9-]+\.[A-Za-z0-9-]+$' vscode/extensions.txt && exit 1 || true
+          grep -nE '(/home/|/Users/)' vscode/settings.json && exit 1 || true
 
       - name: Validate TOML
         run: |

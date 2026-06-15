@@ -134,7 +134,7 @@ install_dotfiles() {
   install_item "$ROOT_DIR/home/.oh-my-zsh/custom/fzf-tab.zsh" "$HOME/.oh-my-zsh/custom/fzf-tab.zsh"
   install_item "$ROOT_DIR/config/kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf"
   install_item "$ROOT_DIR/config/starship.toml" "$HOME/.config/starship.toml"
-  install_item "$ROOT_DIR/config/Code/User/settings.json" "$HOME/.config/Code/User/settings.json"
+  install_item "$ROOT_DIR/vscode/settings.json" "$HOME/.config/Code/User/settings.json"
   install_item "$ROOT_DIR/config/nvim" "$HOME/.config/nvim"
 }
 
