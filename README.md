@@ -13,6 +13,9 @@ Reproducible Linux workstation configuration for an Ubuntu-based development env
 
 </div>
 
+> [!NOTE]
+> **Archived.** This was a learning project. It is complete and no longer maintained, so the repository is read-only.
+
 ## Overview
 
 This repository provides a reusable Linux workstation setup with repeatable shell configuration, terminal tooling, editor settings, package manifests, VS Code extensions, and validation scripts.
